@@ -17,6 +17,7 @@ A deep learning project that converts **grayscale face images into colour images
 | **Architecture** | U-Net (encoder–decoder with skip connections) |
 | **Loss / Optimiser** | MAE (L1) / Adam (lr = 2e-4) |
 | **Image size** | 64 × 64 |
+| **Parameters** | ~12.07M (12,066,082 trainable) |
 | **Environment** | Google Colab |
 
 ---
@@ -43,7 +44,7 @@ flowchart LR
 
 ## 🗂️ Dataset & preprocessing
 
-- **Source:** LAB-converted LFW faces (`color=True`, `min_faces_per_person=10`), about 4,300 images.
+- **Source:** LAB-converted LFW faces (`color=True`, `min_faces_per_person=10`), 4,324 images.
 - **Resize:** every image to `64 × 64`.
 - **Colour conversion:** RGB → LAB using `skimage.color.rgb2lab`.
 - **Normalisation:**
@@ -54,6 +55,7 @@ flowchart LR
 | Split | Input shape | Target shape |
 |---|---|---|
 | Train | `(3675, 64, 64, 1)` | `(3675, 64, 64, 2)` |
+| Validation | `(649, 64, 64, 1)` | `(649, 64, 64, 2)` |
 
 ---
 
@@ -105,14 +107,14 @@ model.fit(X_train, y_train, validation_data=(X_val, y_val),
 ## 🚀 Getting started
 
 ### Run on Google Colab (recommended)
-1. Open `Image_Colourisation.ipynb` in [Google Colab](https://colab.research.google.com/).
+1. Open `Image_Colourisation.ipynb` in [Google Colab](https://colab.research.google.com/github/ishuu9837/IMAGE-COLORIZATION/blob/main/Image_Colourisation.ipynb).
 2. Run all cells. The LFW dataset downloads automatically.
 3. When prompted at the end, upload a portrait photo to test.
 
 ### Run locally
 ```bash
-git clone https://github.com/ishuu9837/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/ishuu9837/IMAGE-COLORIZATION.git
+cd IMAGE-COLORIZATION
 pip install numpy matplotlib scikit-learn scikit-image tensorflow jupyter
 jupyter notebook Image_Colourisation.ipynb
 ```
